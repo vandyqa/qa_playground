@@ -20,6 +20,7 @@ describe("The calculator", () => {
       await clickButton(driver, "2");
       await clickButton(driver, "=");
       let result = await getDisplay(driver);
+      // we can use the exact same "expect" assertions as before.
       expect(result).toBe("4");
     });
     it("can do 5-7", async () => {
@@ -51,10 +52,16 @@ describe("The calculator", () => {
     });
   });
   describe("does more complicated math", () => {
+    // the tests here are formatted the same way;
+    // 1. every button push we might need
+    // 2. grab the display, and add an expect to check the results
     it("can do 2 ÷ -2", async () => {
       await clickButton(driver, "2");
       await clickButton(driver, "÷");
       await clickButton(driver, "2");
+      // the negative might be tricky to figure out at first, especially if you
+      // didn't know what the "+/-" button did. I figure out most of my test
+      // steps in automation by following along manually as I go.
       await clickButton(driver, "+/-");
       await clickButton(driver, "=");
       let result = await getDisplay(driver);
